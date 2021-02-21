@@ -10,13 +10,13 @@ using TravelFriend.UserService.Api.Application.Commands;
 namespace TravelFriend.UserService.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/user")]
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
         private readonly IMediator _mediator;
 
-        public UserController(IMediator mediator,ILogger<UserController> logger)
+        public UserController(IMediator mediator, ILogger<UserController> logger)
         {
             _logger = logger;
             _mediator = mediator;
@@ -25,10 +25,6 @@ namespace TravelFriend.UserService.Api.Controllers
         [HttpPost("register")]
         public async Task<Guid> RegisterUser([FromBody] RegisterUserCommand registerUser)
         {
-            //if (!registerUser.IsValid())
-            //{
-
-            //}
             return await _mediator.Send(registerUser);
         }
     }
