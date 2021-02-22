@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\TravelFriend.Common\TravelFriend.Common.csproj" />
     <ProjectReference Include="..\TravelFriend.UserService.Domain\TravelFriend.UserService.Domain.csproj" />
     <ProjectReference Include="..\TravelFriend.UserService.Infrastructure\TravelFriend.UserService.Infrastructure.csproj" />
   </ItemGroup>

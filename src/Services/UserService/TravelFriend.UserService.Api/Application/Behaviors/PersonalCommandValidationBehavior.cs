@@ -8,9 +8,9 @@ using TravelFriend.Infrastructure.Core.Behaviors;
 
 namespace TravelFriend.UserService.Api.Application.Behaviors
 {
-    public class UserCommandValidationBehavior<TRequest, TResponse> : ValidationBehavior<TRequest, TResponse>
+    public class PersonalCommandValidationBehavior<TRequest, TResponse> : ValidationBehavior<TRequest, TResponse>
     {
-        public UserCommandValidationBehavior(IValidator<TRequest> validator, ILogger<ValidationBehavior<TRequest, TResponse>> logger)
+        public PersonalCommandValidationBehavior(IValidator<TRequest> validator, ILogger<ValidationBehavior<TRequest, TResponse>> logger)
             : base(validator, logger)
         {
 

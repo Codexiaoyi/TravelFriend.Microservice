@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TravelFriend.Infrastructure.Core;
-using TravelFriend.UserService.Domain.UserAggregate;
+using TravelFriend.UserService.Domain.PersonalAggregate;
 
 namespace TravelFriend.UserService.Infrastructure
 {
@@ -12,12 +12,12 @@ namespace TravelFriend.UserService.Infrastructure
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Personal> Personals { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region 注册领域模型与数据库的映射关系
-            modelBuilder.ApplyConfiguration(new UserEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new PersonalEntityTypeConfiguration());
             #endregion
             base.OnModelCreating(modelBuilder);
         }

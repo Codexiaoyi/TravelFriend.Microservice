@@ -2,11 +2,11 @@
 using FluentValidation.Results;
 using MediatR;
 using TravelFriend.UserService.Api.Application.Validations;
-using TravelFriend.UserService.Domain.UserAggregate;
+using TravelFriend.UserService.Domain.PersonalAggregate;
 
 namespace TravelFriend.UserService.Api.Application.Commands
 {
-    public class RegisterUserCommand : IRequest<Guid>
+    public class UpdatePersonalCommand : IRequest<bool>
     {
         public string UserName { get; private set; }
 
@@ -28,8 +28,8 @@ namespace TravelFriend.UserService.Api.Application.Commands
 
         public int Day { get; private set; }
 
-        protected RegisterUserCommand() { }
-        public RegisterUserCommand(string userName, Gender gender, string street, string city, string province, string email, string avatar, int year, int month, int day)
+        protected UpdatePersonalCommand() { }
+        public UpdatePersonalCommand(string userName, Gender gender, string street, string city, string province, string email, string avatar, int year, int month, int day)
         {
             this.Gender = gender;
             this.UserName = userName;

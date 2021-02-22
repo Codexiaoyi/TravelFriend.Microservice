@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using TravelFriend.UserService.Infrastructure;
-using TravelFriend.UserService.Domain.UserAggregate;
+using TravelFriend.UserService.Domain.PersonalAggregate;
 using TravelFriend.UserService.Api.Application.Behaviors;
 using TravelFriend.UserService.Api.Application.Validations;
 using FluentValidation;
@@ -16,10 +16,10 @@ namespace TravelFriend.UserService.Api.Extensions
 
         public static IServiceCollection AddMediatRServices(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IValidator<RegisterUserCommand>), typeof(RegisterUserCommandValidator));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UserCommandValidationBehavior<,>));
+            services.AddTransient(typeof(IValidator<UpdatePersonalCommand>), typeof(UpdatePersonalCommandValidator));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PersonalCommandValidationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UserContextTransactionBehavior<,>));
-            return services.AddMediatR(typeof(User).Assembly, typeof(Program).Assembly);
+            return services.AddMediatR(typeof(Personal).Assembly, typeof(Program).Assembly);
         }
 
 
@@ -38,7 +38,7 @@ namespace TravelFriend.UserService.Api.Extensions
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPersonalRepository, PersonalRepository>();
             return services;
         }
     }

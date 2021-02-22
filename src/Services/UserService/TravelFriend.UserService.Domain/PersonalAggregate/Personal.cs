@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using TravelFriend.Domain.Abstractions;
 
-namespace TravelFriend.UserService.Domain.UserAggregate
+namespace TravelFriend.UserService.Domain.PersonalAggregate
 {
     /// <summary>
-    /// 用户聚合的聚合根（用户实体）
+    /// 个人聚合的聚合根（个人实体）
     /// </summary>
-    public class User : Entity<Guid>, IAggregateRoot
+    public class Personal : Entity<Guid>, IAggregateRoot
     {
         /// <summary>
         /// 昵称
@@ -35,8 +35,8 @@ namespace TravelFriend.UserService.Domain.UserAggregate
         /// </summary>
         public Birthday Birthday { get; private set; }
 
-        protected User() { }
-        public User(string userName, Gender gender, Address address, string email, string avatar, Birthday birthday)
+        protected Personal() { }
+        public Personal(string userName, Gender gender, Address address, string email, string avatar, Birthday birthday)
         {
             this.Gender = gender;
             this.UserName = userName;

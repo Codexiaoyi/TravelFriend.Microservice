@@ -1,15 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TravelFriend.UserService.Domain.UserAggregate;
+using TravelFriend.UserService.Domain.PersonalAggregate;
 
 namespace GeekTime.Ordering.Infrastructure.EntityConfigurations
 {
-    class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
+    class PersonalEntityTypeConfiguration : IEntityTypeConfiguration<Personal>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<Personal> builder)
         {
             builder.HasKey(p => p.Id);
-            builder.ToTable("user");
+            builder.ToTable("personal");
             builder.Property(p => p.UserName).HasMaxLength(30);
             builder.OwnsOne(o => o.Address, a =>
                 {

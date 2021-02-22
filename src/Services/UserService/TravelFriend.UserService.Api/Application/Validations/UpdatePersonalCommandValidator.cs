@@ -8,9 +8,9 @@ using TravelFriend.UserService.Api.Application.Commands;
 
 namespace TravelFriend.UserService.Api.Application.Validations
 {
-    public class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
+    public class UpdatePersonalCommandValidator : AbstractValidator<UpdatePersonalCommand>
     {
-        public RegisterUserCommandValidator()
+        public UpdatePersonalCommandValidator()
         {
             RuleFor(c => c.UserName).NotEmpty().MaximumLength(30);
             RuleFor(c => c.City).MaximumLength(10);

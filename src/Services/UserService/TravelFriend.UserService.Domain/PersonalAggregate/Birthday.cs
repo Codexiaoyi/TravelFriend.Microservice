@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TravelFriend.Domain.Abstractions;
 
-namespace TravelFriend.UserService.Domain.UserAggregate
+namespace TravelFriend.UserService.Domain.PersonalAggregate
 {
     public class Birthday : ValueObject
     {
