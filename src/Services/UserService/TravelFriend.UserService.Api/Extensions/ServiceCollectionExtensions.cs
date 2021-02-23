@@ -11,6 +11,7 @@ using TravelFriend.UserService.Api.Application.Commands;
 using Microsoft.Extensions.Configuration;
 using TravelFriend.UserService.Api.Application.IntegrationEvents;
 using TravelFriend.EventBus;
+using DotNetCore.CAP;
 
 namespace TravelFriend.UserService.Api.Extensions
 {
@@ -26,7 +27,7 @@ namespace TravelFriend.UserService.Api.Extensions
 
         public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient<IIntegrationEventSubscriber, UserIntegrationEventSubscriber>();
+            services.AddTransient<ICapSubscribe, UserIntegrationEventSubscriber>();
             services.AddCap(options =>
             {
                 options.UseEntityFramework<UserContext>();

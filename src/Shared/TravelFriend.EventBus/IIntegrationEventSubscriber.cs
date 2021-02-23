@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TravelFriend.EventBus
 {
-    public interface IIntegrationEventSubscriber : ICapSubscribe
+    public interface IIntegrationEventSubscriber
     {
     }
 }
