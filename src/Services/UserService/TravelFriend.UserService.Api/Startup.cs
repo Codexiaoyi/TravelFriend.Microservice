@@ -37,6 +37,7 @@ namespace TravelFriend.UserService.Api
             services.AddMediatRServices();
             services.AddMySqlDomainContext(Configuration.GetValue<string>("Mysql"));
             services.AddRepositories();
+            services.AddEventBus(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

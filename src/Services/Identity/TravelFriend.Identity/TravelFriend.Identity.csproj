@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\TravelFriend.Common\TravelFriend.Common.csproj" />
+    <ProjectReference Include="..\..\..\Shared\TravelFriend.EventBus\TravelFriend.EventBus.csproj" />
   </ItemGroup>
 
 </Project>

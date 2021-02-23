@@ -8,12 +8,14 @@ using TravelFriend.UserService.Api.Application.Behaviors;
 using TravelFriend.UserService.Api.Application.Validations;
 using FluentValidation;
 using TravelFriend.UserService.Api.Application.Commands;
+using Microsoft.Extensions.Configuration;
+using TravelFriend.UserService.Api.Application.IntegrationEvents;
+using TravelFriend.EventBus;
 
 namespace TravelFriend.UserService.Api.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-
         public static IServiceCollection AddMediatRServices(this IServiceCollection services)
         {
             services.AddTransient(typeof(IValidator<UpdatePersonalCommand>), typeof(UpdatePersonalCommandValidator));
@@ -22,6 +24,21 @@ namespace TravelFriend.UserService.Api.Extensions
             return services.AddMediatR(typeof(Personal).Assembly, typeof(Program).Assembly);
         }
 
+        public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddTransient<IIntegrationEventSubscriber, UserIntegrationEventSubscriber>();
+            services.AddCap(options =>
+            {
+                options.UseEntityFramework<UserContext>();
+
+                options.UseRabbitMQ(options =>
+                {
+                    configuration.GetSection("RabbitMQ").Bind(options);
+                });
+            });
+
+            return services;
+        }
 
         public static IServiceCollection AddDomainContext(this IServiceCollection services, Action<DbContextOptionsBuilder> optionsAction)
         {

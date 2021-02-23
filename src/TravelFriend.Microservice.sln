@@ -27,9 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apigateways", "Apigateways"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{27ECB3AD-E5B1-4F4C-9632-F1D1E4BD454D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelFriend.Identity", "Services\Identity\TravelFriend.Identity\TravelFriend.Identity.csproj", "{30B3A142-99B6-4779-8525-F56855C3A9A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelFriend.Identity", "Services\Identity\TravelFriend.Identity\TravelFriend.Identity.csproj", "{30B3A142-99B6-4779-8525-F56855C3A9A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelFriend.Common", "Shared\TravelFriend.Common\TravelFriend.Common.csproj", "{61F5CE4E-5B7A-4FBF-9309-0275774841D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelFriend.Common", "Shared\TravelFriend.Common\TravelFriend.Common.csproj", "{61F5CE4E-5B7A-4FBF-9309-0275774841D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelFriend.EventBus", "Shared\TravelFriend.EventBus\TravelFriend.EventBus.csproj", "{3EBF10EC-1884-4989-8A87-304D87F053A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{61F5CE4E-5B7A-4FBF-9309-0275774841D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61F5CE4E-5B7A-4FBF-9309-0275774841D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61F5CE4E-5B7A-4FBF-9309-0275774841D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EBF10EC-1884-4989-8A87-304D87F053A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EBF10EC-1884-4989-8A87-304D87F053A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EBF10EC-1884-4989-8A87-304D87F053A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EBF10EC-1884-4989-8A87-304D87F053A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{27ECB3AD-E5B1-4F4C-9632-F1D1E4BD454D} = {D122B8C4-5CE3-4531-914A-C058DD518A9D}
 		{30B3A142-99B6-4779-8525-F56855C3A9A5} = {27ECB3AD-E5B1-4F4C-9632-F1D1E4BD454D}
 		{61F5CE4E-5B7A-4FBF-9309-0275774841D2} = {00315F56-CBB2-4D1E-A4F7-49EA441842DA}
+		{3EBF10EC-1884-4989-8A87-304D87F053A2} = {00315F56-CBB2-4D1E-A4F7-49EA441842DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61BF848F-621F-40F4-8B3F-4B3323553AE2}

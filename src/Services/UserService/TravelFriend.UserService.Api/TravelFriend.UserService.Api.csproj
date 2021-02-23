@@ -8,17 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNetCore.CAP.MySql" Version="3.1.2" />
     <PackageReference Include="FluentValidation" Version="9.5.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.0-alpha.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\TravelFriend.Common\TravelFriend.Common.csproj" />
+    <ProjectReference Include="..\..\..\Shared\TravelFriend.EventBus\TravelFriend.EventBus.csproj" />
     <ProjectReference Include="..\TravelFriend.UserService.Domain\TravelFriend.UserService.Domain.csproj" />
     <ProjectReference Include="..\TravelFriend.UserService.Infrastructure\TravelFriend.UserService.Infrastructure.csproj" />
   </ItemGroup>
