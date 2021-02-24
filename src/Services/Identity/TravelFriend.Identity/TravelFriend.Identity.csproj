@@ -8,13 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNetCore.CAP.MySql" Version="3.1.2" />
+    <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.0-alpha.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\TravelFriend.Common\TravelFriend.Common.csproj" />
     <ProjectReference Include="..\..\..\Shared\TravelFriend.EventBus\TravelFriend.EventBus.csproj" />
+    <ProjectReference Include="..\..\..\Shared\TravelFriend.Infrastructure.Core\TravelFriend.Infrastructure.Core.csproj" />
   </ItemGroup>
 
 </Project>

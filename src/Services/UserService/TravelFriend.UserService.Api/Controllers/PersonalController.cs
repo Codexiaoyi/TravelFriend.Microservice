@@ -29,7 +29,7 @@ namespace TravelFriend.UserService.Api.Controllers
             var result = await _mediator.Send(updatePersonal);
             if (result)
                 return new HttpResponse { Code = 200 };
-            return new HttpResponse { Code = 201, Message = "更新失败" };
+            return new HttpResponse { Code = 201, Message = "Update Failed" };
         }
     }
 }

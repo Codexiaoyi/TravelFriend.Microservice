@@ -8,6 +8,6 @@ namespace TravelFriend.UserService.Api.Application.IntegrationEvents
 {
     public interface ISubscriberService
     {
-        void UserRegisterSucceeded(UserRegisterSucceededIntegrationEvent @event);
+        Task UserRegisterSucceeded(UserRegisterSucceededIntegrationEvent @event);
     }
 }
