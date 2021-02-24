@@ -8,6 +8,6 @@ namespace TravelFriend.EventBus.IntegrationEvents
     {
         public UserRegisterSucceededIntegrationEvent(string email) => UserEmail = email;
 
-        public string UserEmail { get; }
+        public string UserEmail { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DotNetCore.CAP;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,14 @@ namespace TravelFriend.Infrastructure.Core
 {
     public class EFContext : DbContext, IUnitOfWork, ITransaction
     {
-        public EFContext(DbContextOptions options) : base(options) { }
+        protected IMediator _mediator;
+        ICapPublisher _capBus;
+
+        public EFContext(DbContextOptions options, IMediator mediator, ICapPublisher capBus) : base(options)
+        {
+            _mediator = mediator;
+            _capBus = capBus;
+        }
 
         #region ITransaction
         private IDbContextTransaction _currentContextTransaction;
@@ -20,7 +29,7 @@ namespace TravelFriend.Infrastructure.Core
         public Task<IDbContextTransaction> BeginTransactionAsync()
         {
             if (HasActiveTransaction) return null;
-            _currentContextTransaction = Database.BeginTransaction();
+            _currentContextTransaction = Database.BeginTransaction(_capBus, autoCommit: false);
             return Task.FromResult(_currentContextTransaction);
         }
 

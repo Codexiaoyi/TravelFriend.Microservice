@@ -8,10 +8,10 @@ using TravelFriend.EventBus.IntegrationEvents;
 
 namespace TravelFriend.UserService.Api.Application.IntegrationEvents
 {
-    public class UserIntegrationEventSubscriber : ICapSubscribe
+    public class SubscriberService : ICapSubscribe, ISubscriberService
     {
         [CapSubscribe("UserRegisterSucceeded")]
-        public void UserRegisterSucceeded(object @event)
+        public void UserRegisterSucceeded(UserRegisterSucceededIntegrationEvent @event)
         {
             //用户注册成功，添加新用户数据
         }

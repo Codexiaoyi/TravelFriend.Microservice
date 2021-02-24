@@ -1,4 +1,5 @@
-﻿using GeekTime.Ordering.Infrastructure.EntityConfigurations;
+﻿using DotNetCore.CAP;
+using GeekTime.Ordering.Infrastructure.EntityConfigurations;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TravelFriend.Infrastructure.Core;
@@ -8,7 +9,7 @@ namespace TravelFriend.UserService.Infrastructure
 {
     public class UserContext : EFContext
     {
-        public UserContext(DbContextOptions options, IMediator mediator) : base(options)
+        public UserContext(DbContextOptions options, IMediator mediator, ICapPublisher capBus) : base(options, mediator, capBus)
         {
         }
 

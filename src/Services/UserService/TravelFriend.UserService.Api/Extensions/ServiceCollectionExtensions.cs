@@ -27,10 +27,10 @@ namespace TravelFriend.UserService.Api.Extensions
 
         public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient<ICapSubscribe, UserIntegrationEventSubscriber>();
+            services.AddTransient<ISubscriberService, SubscriberService>();
             services.AddCap(options =>
             {
-                options.UseEntityFramework<UserContext>();
+                options.UseMySql(configuration.GetValue<string>("Mysql"));
 
                 options.UseRabbitMQ(options =>
                 {
