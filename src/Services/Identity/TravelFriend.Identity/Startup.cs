@@ -11,20 +11,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TravelFriend.Identity.Infrastructure;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using TravelFriend.Identity.Authorization;
 
 namespace TravelFriend.Identity
 {
     public class Startup
     {
-        private readonly IConfiguration configuration;
+        private readonly IConfiguration _configuration;
 
         public Startup(IConfiguration configuration)
         {
-            this.configuration = configuration;
+            _configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(new JwtHelper(_configuration));
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddSwaggerGen(c =>
             {
@@ -32,16 +37,16 @@ namespace TravelFriend.Identity
             });
             services.AddDbContext<AccountContext>(options =>
             {
-                options.UseMySql(configuration.GetValue<string>("Mysql"), new MySqlServerVersion(new Version()));
+                options.UseMySql(_configuration.GetValue<string>("Mysql"), new MySqlServerVersion(new Version()));
             });
             services.AddControllers();
             services.AddCap(options =>
             {
-                options.UseMySql(configuration.GetValue<string>("Mysql"));
+                options.UseMySql(_configuration.GetValue<string>("Mysql"));
 
                 options.UseRabbitMQ(options =>
                 {
-                    configuration.GetSection("RabbitMQ").Bind(options);
+                    _configuration.GetSection("RabbitMQ").Bind(options);
                 });
             });
         }

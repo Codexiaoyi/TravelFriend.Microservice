@@ -12,6 +12,9 @@ using Microsoft.Extensions.Configuration;
 using TravelFriend.UserService.Api.Application.IntegrationEvents;
 using TravelFriend.EventBus;
 using DotNetCore.CAP;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace TravelFriend.UserService.Api.Extensions
 {
@@ -57,6 +60,26 @@ namespace TravelFriend.UserService.Api.Extensions
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IPersonalRepository, PersonalRepository>();
+            return services;
+        }
+
+        public static IServiceCollection AddAuthorization(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddAuthentication()
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,//是否验证Issuer
+                        ValidateAudience = true,//是否验证Audience
+                        ValidateLifetime = true,//是否验证失效时间
+                        ClockSkew = TimeSpan.FromSeconds(30),
+                        ValidateIssuerSigningKey = true,//是否验证SecurityKey
+                        ValidAudience = "travelfriend",//Audience
+                        ValidIssuer = "travelfriend",//Issuer
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["SecurityKey"]))//拿到SecurityKey
+                    };
+                });
             return services;
         }
     }

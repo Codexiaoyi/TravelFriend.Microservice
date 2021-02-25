@@ -17,11 +17,12 @@ namespace TravelFriend.UserService.Api.Application.Commands
 
         public async Task<bool> Handle(UpdatePersonalCommand request, CancellationToken cancellationToken)
         {
+            var person = await _personalRepository.GetPersonalByEmail(request.Email);
             var address = new Address(request.Street, request.City, request.Province);
             var birthday = new Birthday(request.Year, request.Month, request.Day);
-            var user = new Personal(request.UserName, request.Gender, address, request.Email, request.Avatar, birthday);
 
-            await _personalRepository.UpdateAsync(user);
+            person.UpdatePersonal(request.UserName, request.Gender, address, request.Avatar, birthday);
+            await _personalRepository.UpdateAsync(person);
             return await _personalRepository.UnitOfWork.SaveEntitiesAsync();
         }
     }

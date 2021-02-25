@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TravelFriend.Common;
 using TravelFriend.Common.Http;
 using TravelFriend.EventBus.IntegrationEvents;
+using TravelFriend.Identity.Authorization;
 using TravelFriend.Identity.HttpDto;
 using TravelFriend.Identity.Infrastructure;
 
@@ -33,7 +34,7 @@ namespace TravelFriend.Identity.Controllers
                 return Ok(new HttpResponse()
                 {
                     Code = 203,
-                    Message = "Email Rules Error"
+                    Message = "Email rules error"
                 });
             }
 
@@ -43,7 +44,7 @@ namespace TravelFriend.Identity.Controllers
                 return Ok(new HttpResponse()
                 {
                     Code = 202,
-                    Message = "Email Existed"
+                    Message = "Email existed"
                 });
             }
 
@@ -60,21 +61,48 @@ namespace TravelFriend.Identity.Controllers
                 return Ok(new HttpResponse()
                 {
                     Code = 200,
-                    Message = "Register Succeeded"
+                    Message = "Register succeeded"
                 });
             }
 
             return Ok(new HttpResponse()
             {
                 Code = 201,
-                Message = "Register Failed"
+                Message = "Register failed"
             });
         }
 
         [HttpPost("login")]
-        public Task<string> Login([FromBody] AccountRequestDto requestDto)
+        public async Task<ActionResult> Login([FromBody] AccountRequestDto requestDto)
         {
-            return Task.FromResult(Guid.NewGuid() + requestDto.Email);
+            var account = await _accountRepository.QueryAccountAsync(requestDto.Email);
+            if (account == null)
+            {
+                return Ok(new HttpResponse()
+                {
+                    Code = 202,
+                    Message = "Email not existed"
+                });
+            }
+
+            if (account.Password == requestDto.Password)
+            {
+                //登陆成功
+                var token = JwtHelper.GetToken(requestDto.Email);
+
+                return Ok(new AccountResponseDto()
+                {
+                    Code = 200,
+                    Message = "Login succeeded",
+                    Token = token
+                });
+            }
+
+            return Ok(new HttpResponse()
+            {
+                Code = 201,
+                Message = "Login failed"
+            });
         }
     }
 }

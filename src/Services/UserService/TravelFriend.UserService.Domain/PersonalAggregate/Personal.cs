@@ -45,5 +45,22 @@ namespace TravelFriend.UserService.Domain.PersonalAggregate
             this.Avatar = avatar;
             this.Birthday = birthday;
         }
+
+        /// <summary>
+        /// 更新用户个人信息
+        /// </summary>
+        /// <param name="userName">昵称</param>
+        /// <param name="gender">性别</param>
+        /// <param name="address">住址</param>
+        /// <param name="avatar">头像地址</param>
+        /// <param name="birthday">生日</param>
+        public void UpdatePersonal(string userName, Gender gender, Address address, string avatar, Birthday birthday)
+        {
+            this.Gender = gender;
+            this.UserName = userName;
+            this.Address = address;
+            this.Avatar = avatar;
+            this.Birthday = birthday;
+        }
     }
 }

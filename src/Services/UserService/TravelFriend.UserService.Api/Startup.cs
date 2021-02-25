@@ -33,6 +33,7 @@ namespace TravelFriend.UserService.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UserService.Api", Version = "v1" });
             });
+            services.AddAuthorization(Configuration);
             services.AddControllers();
             services.AddMediatRServices();
             services.AddMySqlDomainContext(Configuration.GetValue<string>("Mysql"));
@@ -58,6 +59,7 @@ namespace TravelFriend.UserService.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
