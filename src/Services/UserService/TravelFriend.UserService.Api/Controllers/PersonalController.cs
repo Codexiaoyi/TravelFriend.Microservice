@@ -9,7 +9,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using TravelFriend.Common.Http;
 using TravelFriend.UserService.Api.Application.Commands;
-using TravelFriend.UserService.Api.Application.HttpDto;
 using TravelFriend.UserService.Api.Application.Queries;
 
 namespace TravelFriend.UserService.Api.Controllers
