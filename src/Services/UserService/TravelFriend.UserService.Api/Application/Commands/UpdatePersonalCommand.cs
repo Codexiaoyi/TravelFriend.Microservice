@@ -1,7 +1,6 @@
 ﻿using System;
 using FluentValidation.Results;
 using MediatR;
-using TravelFriend.UserService.Api.Application.Validations;
 using TravelFriend.UserService.Domain.PersonalAggregate;
 
 namespace TravelFriend.UserService.Api.Application.Commands

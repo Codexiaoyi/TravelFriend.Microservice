@@ -4,8 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using TravelFriend.UserService.Infrastructure;
 using TravelFriend.UserService.Domain.PersonalAggregate;
-using TravelFriend.UserService.Api.Application.Behaviors;
-using TravelFriend.UserService.Api.Application.Validations;
 using FluentValidation;
 using TravelFriend.UserService.Api.Application.Commands;
 using Microsoft.Extensions.Configuration;
@@ -22,8 +20,6 @@ namespace TravelFriend.UserService.Api.Extensions
     {
         public static IServiceCollection AddMediatRServices(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IValidator<UpdatePersonalCommand>), typeof(UpdatePersonalCommandValidator));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PersonalCommandValidationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UserContextTransactionBehavior<,>));
             return services.AddMediatR(typeof(Personal).Assembly, typeof(Program).Assembly);
         }
