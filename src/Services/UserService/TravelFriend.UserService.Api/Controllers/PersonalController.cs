@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TravelFriend.Common.Http;
 using TravelFriend.UserService.Api.Application.Commands;
+using TravelFriend.UserService.Api.Application.HttpDto;
+using TravelFriend.UserService.Api.Application.Queries;
 
 namespace TravelFriend.UserService.Api.Controllers
 {
@@ -27,12 +29,32 @@ namespace TravelFriend.UserService.Api.Controllers
         }
 
         [HttpPost("update")]
-        public async Task<HttpResponse> UpdatePersonalInfo([FromBody] UpdatePersonalCommand updatePersonal)
+        public async Task<ActionResult> UpdatePersonalInfo([FromBody] UpdatePersonalCommand updatePersonal)
         {
             var result = await _mediator.Send(updatePersonal);
             if (result)
-                return new HttpResponse { Code = 200 };
-            return new HttpResponse { Code = 201, Message = "Update Failed" };
+                return Ok(new HttpResponse { Code = 200 });
+            return Ok(new HttpResponse { Code = 201, Message = "Update Failed" });
+        }
+
+        [HttpPost("get")]
+        public async Task<ActionResult> GetPersonalInfo([FromBody] PersonalInfoQuery personalInfo)
+        {
+            var result = await _mediator.Send(personalInfo);
+            if (result == null)
+            {
+                return Ok(new HttpResponse
+                {
+                    Code = 201,
+                    Message = "User not exist"
+                });
+            }
+
+            return Ok(new PersonalInfoResponseDto
+            {
+                Code = 200,
+                Personal = result
+            });
         }
     }
 }

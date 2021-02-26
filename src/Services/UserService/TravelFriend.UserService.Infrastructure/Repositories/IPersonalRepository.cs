@@ -12,6 +12,6 @@ namespace TravelFriend.UserService.Infrastructure
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        Task<Personal> GetPersonalByEmail(string email);
+        Task<Personal> GetPersonalByEmailAsync(string email);
     }
 }

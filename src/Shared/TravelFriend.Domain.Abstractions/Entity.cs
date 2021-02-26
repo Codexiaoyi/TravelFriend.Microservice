@@ -15,6 +15,37 @@ namespace TravelFriend.Domain.Abstractions
             return $"[Entity:{GetType().Name}] Keys = {string.Join("，", GetKeys())}";
         }
 
+        #region DomainEvent
+        private List<IDomainEvent> _domainEvents;
+        public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents?.AsReadOnly();
+
+        /// <summary>
+        /// 添加DomainEvent
+        /// </summary>
+        /// <param name="eventItem"></param>
+        public void AddDomainEvent(IDomainEvent eventItem)
+        {
+            _domainEvents = _domainEvents ?? new List<IDomainEvent>();
+            _domainEvents.Add(eventItem);
+        }
+
+        /// <summary>
+        /// 移除单个DomainEvent
+        /// </summary>
+        /// <param name="eventItem"></param>
+        public void RemoveDomainEvent(IDomainEvent eventItem)
+        {
+            _domainEvents?.Remove(eventItem);
+        }
+
+        /// <summary>
+        /// 清空所有的DoaminEvent
+        /// </summary>
+        public void ClearDomainEvents()
+        {
+            _domainEvents?.Clear();
+        }
+        #endregion
     }
     public abstract class Entity<TKey> : Entity, IEntity<TKey>
     {

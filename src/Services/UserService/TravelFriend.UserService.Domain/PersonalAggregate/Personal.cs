@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TravelFriend.Domain.Abstractions;
+using TravelFriend.UserService.Domain.Events;
 
 namespace TravelFriend.UserService.Domain.PersonalAggregate
 {
@@ -61,6 +62,8 @@ namespace TravelFriend.UserService.Domain.PersonalAggregate
             this.Address = address;
             this.Avatar = avatar;
             this.Birthday = birthday;
+
+            this.AddDomainEvent(new PersonalUpdatedDomainEvent(this));
         }
     }
 }

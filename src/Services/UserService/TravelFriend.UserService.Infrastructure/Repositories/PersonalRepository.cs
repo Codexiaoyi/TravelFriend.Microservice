@@ -16,7 +16,7 @@ namespace TravelFriend.UserService.Infrastructure
             _context = context;
         }
 
-        public Task<Personal> GetPersonalByEmail(string email)
+        public Task<Personal> GetPersonalByEmailAsync(string email)
         {
             return _context.Personals.FirstOrDefaultAsync(x => x.Email == email);
         }

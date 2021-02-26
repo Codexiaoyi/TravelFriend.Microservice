@@ -17,7 +17,7 @@ namespace TravelFriend.UserService.Api.Application.Commands
 
         public async Task<bool> Handle(UpdatePersonalCommand request, CancellationToken cancellationToken)
         {
-            var person = await _personalRepository.GetPersonalByEmail(request.Email);
+            var person = await _personalRepository.GetPersonalByEmailAsync(request.Email);
             var address = new Address(request.Street, request.City, request.Province);
             var birthday = new Birthday(request.Year, request.Month, request.Day);
 

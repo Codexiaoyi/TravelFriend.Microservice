@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TravelFriend.Infrastructure.Core.Extensions;
 
 namespace TravelFriend.Infrastructure.Core
 {
@@ -83,9 +84,16 @@ namespace TravelFriend.Infrastructure.Core
         #endregion
 
         #region IUnitOfWork
+        /// <summary>
+        /// 数据持久化
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
-            return await base.SaveChangesAsync(cancellationToken) > 0;
+            var result = await base.SaveChangesAsync(cancellationToken) > 0;
+            if (result) await _mediator.DispatchDomainEventsAsync(this);
+            return result;
         }
         #endregion
     }
