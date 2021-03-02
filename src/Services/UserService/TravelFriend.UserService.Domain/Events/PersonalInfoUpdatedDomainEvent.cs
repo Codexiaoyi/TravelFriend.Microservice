@@ -6,10 +6,10 @@ using TravelFriend.UserService.Domain.PersonalAggregate;
 
 namespace TravelFriend.UserService.Domain.Events
 {
-    public class PersonalUpdatedDomainEvent : IDomainEvent
+    public class PersonalInfoUpdatedDomainEvent : IDomainEvent
     {
         public Personal Personal { get; private set; }
-        public PersonalUpdatedDomainEvent(Personal personal)
+        public PersonalInfoUpdatedDomainEvent(Personal personal)
         {
             this.Personal = personal;
         }

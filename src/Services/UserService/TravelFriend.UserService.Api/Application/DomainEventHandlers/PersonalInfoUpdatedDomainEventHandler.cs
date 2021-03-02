@@ -10,17 +10,17 @@ using TravelFriend.UserService.Domain.Events;
 
 namespace TravelFriend.UserService.Api.Application.DomainEventHandlers
 {
-    public class PersonalUpdatedDomainEventHandler : IDomainEventHandler<PersonalUpdatedDomainEvent>
+    public class PersonalInfoUpdatedDomainEventHandler : IDomainEventHandler<PersonalInfoUpdatedDomainEvent>
     {
         private readonly ICapPublisher _capPublisher;
 
-        public PersonalUpdatedDomainEventHandler(ICapPublisher capPublisher)
+        public PersonalInfoUpdatedDomainEventHandler(ICapPublisher capPublisher)
 
         {
             _capPublisher = capPublisher;
         }
 
-        public async Task Handle(PersonalUpdatedDomainEvent notification, CancellationToken cancellationToken)
+        public async Task Handle(PersonalInfoUpdatedDomainEvent notification, CancellationToken cancellationToken)
         {
             await _capPublisher.PublishAsync("PersonalUpdated", new PersonalUpdatedInegrationEvent(notification.Personal.Email));
         }

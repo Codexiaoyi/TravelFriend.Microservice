@@ -5,7 +5,7 @@ using TravelFriend.UserService.Domain.PersonalAggregate;
 
 namespace TravelFriend.UserService.Api.Application.Commands
 {
-    public class UpdatePersonalCommand : IRequest<bool>
+    public class UpdatePersonalInfoCommand : IRequest<bool>
     {
         public string UserName { get; private set; }
 
@@ -19,16 +19,14 @@ namespace TravelFriend.UserService.Api.Application.Commands
 
         public string Email { get; private set; }
 
-        public string Avatar { get; private set; }
-
         public int Year { get; private set; }
 
         public int Month { get; private set; }
 
         public int Day { get; private set; }
 
-        protected UpdatePersonalCommand() { }
-        public UpdatePersonalCommand(string userName, Gender gender, string street, string city, string province, string email, string avatar, int year, int month, int day)
+        protected UpdatePersonalInfoCommand() { }
+        public UpdatePersonalInfoCommand(string userName, Gender gender, string street, string city, string province, string email, int year, int month, int day)
         {
             this.Gender = gender;
             this.UserName = userName;
@@ -36,7 +34,6 @@ namespace TravelFriend.UserService.Api.Application.Commands
             this.Province = province;
             this.City = city;
             this.Email = email;
-            this.Avatar = avatar;
             this.Year = year;
             this.Month = month;
             this.Day = day;

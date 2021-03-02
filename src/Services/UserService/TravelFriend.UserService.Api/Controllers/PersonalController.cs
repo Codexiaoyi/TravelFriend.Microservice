@@ -27,8 +27,8 @@ namespace TravelFriend.UserService.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("update")]
-        public async Task<ActionResult> UpdatePersonalInfo([FromBody] UpdatePersonalCommand updatePersonal)
+        [HttpPost("info/update")]
+        public async Task<ActionResult> UpdatePersonalInfo([FromBody] UpdatePersonalInfoCommand updatePersonal)
         {
             var result = await _mediator.Send(updatePersonal);
             if (result)
@@ -36,7 +36,7 @@ namespace TravelFriend.UserService.Api.Controllers
             return Ok(new HttpResponse { Code = 201, Message = "Update Failed" });
         }
 
-        [HttpPost("get")]
+        [HttpPost("info/get")]
         public async Task<ActionResult> GetPersonalInfo([FromBody] PersonalInfoQuery personalInfo)
         {
             var result = await _mediator.Send(personalInfo);
@@ -54,6 +54,15 @@ namespace TravelFriend.UserService.Api.Controllers
                 Code = 200,
                 Personal = result
             });
+        }
+
+        [HttpPost("avatar/update")]
+        public async Task<ActionResult> UpdatePersonalAvatar([FromBody] UpdateAvatarCommand updateAvatar)
+        {
+            var result = await _mediator.Send(updateAvatar);
+            if (result)
+                return Ok(new HttpResponse { Code = 200 });
+            return Ok(new HttpResponse { Code = 201, Message = "Update Failed" });
         }
     }
 }

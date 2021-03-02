@@ -53,17 +53,26 @@ namespace TravelFriend.UserService.Domain.PersonalAggregate
         /// <param name="userName">昵称</param>
         /// <param name="gender">性别</param>
         /// <param name="address">住址</param>
-        /// <param name="avatar">头像地址</param>
         /// <param name="birthday">生日</param>
-        public void UpdatePersonal(string userName, Gender gender, Address address, string avatar, Birthday birthday)
+        public void UpdatePersonalInfo(string userName, Gender gender, Address address, Birthday birthday)
         {
             this.Gender = gender;
             this.UserName = userName;
             this.Address = address;
-            this.Avatar = avatar;
             this.Birthday = birthday;
 
-            this.AddDomainEvent(new PersonalUpdatedDomainEvent(this));
+            this.AddDomainEvent(new PersonalInfoUpdatedDomainEvent(this));
+        }
+
+        /// <summary>
+        /// 更新用户个人头像地址
+        /// </summary>
+        /// <param name="avatar">住址</param>
+        public void UpdatePersonalAvatar(string avatar)
+        {
+            this.Avatar = avatar;
+
+            this.AddDomainEvent(new PersonalAvatarUpdatedDomainEvent(this.Email, this.Avatar));
         }
     }
 }

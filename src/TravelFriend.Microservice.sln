@@ -31,7 +31,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelFriend.Identity", "Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelFriend.Common", "Shared\TravelFriend.Common\TravelFriend.Common.csproj", "{61F5CE4E-5B7A-4FBF-9309-0275774841D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelFriend.EventBus", "Shared\TravelFriend.EventBus\TravelFriend.EventBus.csproj", "{3EBF10EC-1884-4989-8A87-304D87F053A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelFriend.EventBus", "Shared\TravelFriend.EventBus\TravelFriend.EventBus.csproj", "{3EBF10EC-1884-4989-8A87-304D87F053A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AggregateServices", "AggregateServices", "{F36C5F4D-8777-4375-87E3-C7EBBA8F3FFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelFriend.Aggregate.Upload", "AggregateServices\TravelFriend.Aggregate.Upload\TravelFriend.Aggregate.Upload.csproj", "{7565133A-6093-4F4D-897E-B7332B78B1B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,10 @@ Global
 		{3EBF10EC-1884-4989-8A87-304D87F053A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EBF10EC-1884-4989-8A87-304D87F053A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EBF10EC-1884-4989-8A87-304D87F053A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7565133A-6093-4F4D-897E-B7332B78B1B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7565133A-6093-4F4D-897E-B7332B78B1B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7565133A-6093-4F4D-897E-B7332B78B1B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7565133A-6093-4F4D-897E-B7332B78B1B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +102,8 @@ Global
 		{30B3A142-99B6-4779-8525-F56855C3A9A5} = {27ECB3AD-E5B1-4F4C-9632-F1D1E4BD454D}
 		{61F5CE4E-5B7A-4FBF-9309-0275774841D2} = {00315F56-CBB2-4D1E-A4F7-49EA441842DA}
 		{3EBF10EC-1884-4989-8A87-304D87F053A2} = {00315F56-CBB2-4D1E-A4F7-49EA441842DA}
+		{F36C5F4D-8777-4375-87E3-C7EBBA8F3FFB} = {759C8388-C904-48FB-8687-1D6FF2CD9248}
+		{7565133A-6093-4F4D-897E-B7332B78B1B2} = {F36C5F4D-8777-4375-87E3-C7EBBA8F3FFB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61BF848F-621F-40F4-8B3F-4B3323553AE2}

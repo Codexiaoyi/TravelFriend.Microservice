@@ -43,6 +43,7 @@ namespace TravelFriend.Gateway.Web
                 {
                     c.SwaggerEndpoint("/swagger/identity/v1/swagger.json", "Identity Api V1");
                     c.SwaggerEndpoint("/swagger/user/v1/swagger.json", "User Api V1");
+                    c.SwaggerEndpoint("/swagger/upload/v1/swagger.json", "Upload Api V1");
                 });
             }
 
