@@ -45,11 +45,6 @@ namespace TravelFriend.UserService.Api
         {
             if (env.IsDevelopment())
             {
-                using (var scope = app.ApplicationServices.CreateScope())
-                {
-                    var dc = scope.ServiceProvider.GetService<UserContext>();
-                    dc.Database.EnsureCreated();
-                }
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TravelFriend.UserService.Api v1"));

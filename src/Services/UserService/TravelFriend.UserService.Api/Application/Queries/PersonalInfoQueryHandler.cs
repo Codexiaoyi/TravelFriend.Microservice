@@ -20,13 +20,15 @@ namespace TravelFriend.UserService.Api.Application.Queries
         public async Task<Personal> Handle(PersonalInfoQuery request, CancellationToken cancellationToken)
         {
             var personal = await _personalRepository.GetPersonalByEmailAsync(request.Email);
+            if (personal == null) return null;
+
             return new Personal()
             {
                 UserName = personal.UserName,
                 Gender = personal.Gender,
-                Province = personal.Address.Province,
-                City = personal.Address.City,
-                Street = personal.Address.Street,
+                Province = personal.Address?.Province,
+                City = personal.Address?.City,
+                Street = personal.Address?.Street,
                 Email = personal.Email,
                 Avatar = personal.Avatar,
                 Year = personal.Birthday.Year,

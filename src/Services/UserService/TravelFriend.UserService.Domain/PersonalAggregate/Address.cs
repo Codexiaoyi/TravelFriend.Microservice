@@ -9,7 +9,13 @@ namespace TravelFriend.UserService.Domain.PersonalAggregate
         public string City { get; private set; }
         public string Province { get; private set; }
 
-        public Address() { }
+        public Address()
+        {
+            Street = string.Empty;
+            City = string.Empty;
+            Province = string.Empty;
+        }
+
         public Address(string street, string city, string province)
         {
             Street = street;

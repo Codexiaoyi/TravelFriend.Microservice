@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TravelFriend.UserService.Domain.PersonalAggregate;
 
-namespace GeekTime.Ordering.Infrastructure.EntityConfigurations
+namespace TravelFriend.UserService.Infrastructure.EntityConfigurations
 {
     class PersonalEntityTypeConfiguration : IEntityTypeConfiguration<Personal>
     {

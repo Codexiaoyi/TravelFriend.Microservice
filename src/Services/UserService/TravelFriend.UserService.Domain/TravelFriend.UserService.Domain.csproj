@@ -8,8 +8,4 @@
     <ProjectReference Include="..\..\..\Shared\TravelFriend.Domain.Abstractions\TravelFriend.Domain.Abstractions.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="TeamAggregate\" />
-  </ItemGroup>
-
 </Project>

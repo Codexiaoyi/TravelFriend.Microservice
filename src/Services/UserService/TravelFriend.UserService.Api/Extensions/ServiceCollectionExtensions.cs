@@ -13,6 +13,7 @@ using DotNetCore.CAP;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using TravelFriend.UserService.Infrastructure.Repositories;
 
 namespace TravelFriend.UserService.Api.Extensions
 {
@@ -49,13 +50,14 @@ namespace TravelFriend.UserService.Api.Extensions
         {
             return services.AddDomainContext(builder =>
             {
-                builder.UseMySql(connectionString, new MySqlServerVersion(new Version()));
+                builder.UseMySql(connectionString, new MySqlServerVersion(new Version()), b => b.MigrationsAssembly("TravelFriend.UserService.Api"));
             });
         }
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IPersonalRepository, PersonalRepository>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
             return services;
         }
 
