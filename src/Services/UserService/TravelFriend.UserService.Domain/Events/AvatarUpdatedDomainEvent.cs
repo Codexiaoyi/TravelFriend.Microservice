@@ -15,4 +15,15 @@ namespace TravelFriend.UserService.Domain.Events
             this.Avatar = avatar;
         }
     }
+
+    public class TeamAvatarUpdatedDomainEvent : IDomainEvent
+    {
+        public Guid TeamId { get; private set; }
+        public string Avatar { get; private set; }
+        public TeamAvatarUpdatedDomainEvent(Guid teamId, string avatar)
+        {
+            this.TeamId = teamId;
+            this.Avatar = avatar;
+        }
+    }
 }

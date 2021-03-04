@@ -57,7 +57,7 @@ namespace TravelFriend.UserService.Api.Controllers
         }
 
         [HttpPost("avatar/update")]
-        public async Task<ActionResult> UpdatePersonalAvatar([FromBody] UpdateAvatarCommand updateAvatar)
+        public async Task<ActionResult> UpdatePersonalAvatar([FromBody] UpdatePersonalAvatarCommand updateAvatar)
         {
             var result = await _mediator.Send(updateAvatar);
             if (result)

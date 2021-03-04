@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TravelFriend.Common.Http;
 using TravelFriend.UserService.Api.Application.Commands;
+using TravelFriend.UserService.Api.Application.Queries;
 
 namespace TravelFriend.UserService.Api.Controllers
 {
@@ -30,6 +31,38 @@ namespace TravelFriend.UserService.Api.Controllers
             if (result)
                 return Ok(new HttpResponse { Code = 200 });
             return Ok(new HttpResponse { Code = 201, Message = "Create Failed" });
+        }
+
+        [HttpPost("info/update")]
+        public async Task<ActionResult> UpdateTeamInfo([FromBody] UpdateTeamInfoCommand updateTeamInfo)
+        {
+            var result = await _mediator.Send(updateTeamInfo);
+            if (result)
+                return Ok(new HttpResponse { Code = 200 });
+            return Ok(new HttpResponse { Code = 201, Message = "Update Failed" });
+        }
+
+        [HttpPost("avatar/update")]
+        public async Task<ActionResult> UpdateTeamAvatar([FromBody] UpdateTeamAvatarCommand updateTeamAvatar)
+        {
+            var result = await _mediator.Send(updateTeamAvatar);
+            if (result)
+                return Ok(new HttpResponse { Code = 200 });
+            return Ok(new HttpResponse { Code = 201, Message = "Update Failed" });
+        }
+
+        [HttpPost("info/get")]
+        public async Task<ActionResult> GetTeamInfo([FromBody] TeamInfoQuery teamInfo)
+        {
+            var result = await _mediator.Send(teamInfo);
+            if (result == null)
+                return Ok(new HttpResponse { Code = 201, Message = "Team not exist" });
+
+            return Ok(new TeamInfoResponseDto
+            {
+                Code = 200,
+                Team = result
+            });
         }
     }
 }

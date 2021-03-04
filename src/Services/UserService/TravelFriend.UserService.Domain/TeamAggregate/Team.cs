@@ -56,5 +56,16 @@ namespace TravelFriend.UserService.Domain.TeamAggregate
 
             this.AddDomainEvent(new TeamInfoUpdatedDomainEvent(this));
         }
+
+        /// <summary>
+        /// 更新用户团队头像地址
+        /// </summary>
+        /// <param name="avatar">住址</param>
+        public void UpdateTeamAvatar(string avatar)
+        {
+            this.Avatar = avatar;
+
+            this.AddDomainEvent(new TeamAvatarUpdatedDomainEvent(this.Id, this.Avatar));
+        }
     }
 }
