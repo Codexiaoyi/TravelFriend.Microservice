@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TravelFriend.Aggregate.Upload
+namespace TravelFriend.Aggregate.Media
 {
     public class Program
     {
