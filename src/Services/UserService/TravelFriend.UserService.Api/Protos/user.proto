@@ -1,0 +1,25 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "TravelFriend.UserService.API.Grpc";
+
+package UserServiceApi;
+
+service UserService {
+
+	rpc UpdatePersonalAvatar(UpdatePersonalAvatarCommand) returns (UpdateResponse);
+	rpc UpdatePersonalAvatar(UpdateTeamAvatarCommand) returns (UpdateResponse);
+}
+
+message UpdatePersonalAvatarCommand{
+	string Email = 1;
+	string Avatar = 2;
+}
+
+message UpdateTeamAvatarCommand{
+	string TeamId = 1;
+	string Avatar = 2;
+}
+
+message UpdateResponse{
+    bool Result = 1;
+}
