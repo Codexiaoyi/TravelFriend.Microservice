@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static TravelFriend.UserService.Api.Protos.UserProvider;
 
 namespace TravelFriend.Aggregate.Media
 {
@@ -26,6 +27,15 @@ namespace TravelFriend.Aggregate.Media
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddGrpcClient<UserProviderClient>(options =>
+            {
+                options.Address = new Uri("https://localhost:3001");
+            });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelFriend.Aggregate.Media", Version = "v1" });
+            });
             services.AddAuthentication()
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
@@ -42,10 +52,6 @@ namespace TravelFriend.Aggregate.Media
                     };
                 });
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelFriend.Aggregate.Media", Version = "v1" });
-            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

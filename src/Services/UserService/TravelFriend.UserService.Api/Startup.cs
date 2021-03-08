@@ -14,6 +14,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using TravelFriend.UserService.Api.Extensions;
+using TravelFriend.UserService.Api.Protos;
 using TravelFriend.UserService.Infrastructure;
 
 namespace TravelFriend.UserService.Api
@@ -29,6 +30,8 @@ namespace TravelFriend.UserService.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddGrpc();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UserService.Api", Version = "v1" });
@@ -60,6 +63,7 @@ namespace TravelFriend.UserService.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGrpcService<UserProviderImpl>();
             });
         }
     }

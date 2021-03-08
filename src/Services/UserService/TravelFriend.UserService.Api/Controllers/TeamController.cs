@@ -42,15 +42,6 @@ namespace TravelFriend.UserService.Api.Controllers
             return Ok(new HttpResponse { Code = 201, Message = "Update Failed" });
         }
 
-        [HttpPost("avatar/update")]
-        public async Task<ActionResult> UpdateTeamAvatar([FromBody] UpdateTeamAvatarCommand updateTeamAvatar)
-        {
-            var result = await _mediator.Send(updateTeamAvatar);
-            if (result)
-                return Ok(new HttpResponse { Code = 200 });
-            return Ok(new HttpResponse { Code = 201, Message = "Update Failed" });
-        }
-
         [HttpPost("info/get")]
         public async Task<ActionResult> GetTeamInfo([FromBody] TeamInfoQuery teamInfo)
         {

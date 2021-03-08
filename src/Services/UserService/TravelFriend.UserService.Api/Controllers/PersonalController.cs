@@ -55,14 +55,5 @@ namespace TravelFriend.UserService.Api.Controllers
                 Personal = result
             });
         }
-
-        [HttpPost("avatar/update")]
-        public async Task<ActionResult> UpdatePersonalAvatar([FromBody] UpdatePersonalAvatarCommand updateAvatar)
-        {
-            var result = await _mediator.Send(updateAvatar);
-            if (result)
-                return Ok(new HttpResponse { Code = 200 });
-            return Ok(new HttpResponse { Code = 201, Message = "Update Failed" });
-        }
     }
 }

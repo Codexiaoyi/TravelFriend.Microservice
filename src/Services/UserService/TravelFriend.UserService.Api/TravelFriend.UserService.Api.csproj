@@ -8,10 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="GrpcServices\**" />
+    <Content Remove="GrpcServices\**" />
+    <EmbeddedResource Remove="GrpcServices\**" />
+    <None Remove="GrpcServices\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DotNetCore.CAP.MySql" Version="3.1.2" />
     <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="3.1.2" />
     <PackageReference Include="FluentValidation" Version="9.5.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.35.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.36.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
@@ -32,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GrpcServices\" />
+    <Protobuf Include="Protos\user.proto" GrpcServices="Server" />
   </ItemGroup>
 
 </Project>
