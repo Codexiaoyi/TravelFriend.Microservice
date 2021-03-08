@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelFriend.Infrastructure.Core;
@@ -19,6 +21,11 @@ namespace TravelFriend.UserService.Infrastructure.Repositories
         public Task<Member> AddMemberAsync(Member member)
         {
             return Task.FromResult(_context.Members.Add(member).Entity);
+        }
+
+        public Task<List<Member>> QueryMembersAsync(Guid teamId)
+        {
+            return Task.FromResult(_context.Members.Where(x => x.TeamId == teamId).ToList());
         }
     }
 }

@@ -64,5 +64,19 @@ namespace TravelFriend.UserService.Api.Controllers
                 Team = result
             });
         }
+
+        [HttpPost("member/get")]
+        public async Task<ActionResult> GetTeamMembers([FromBody] TeamMembersQuery membersQuery)
+        {
+            var result = await _mediator.Send(membersQuery);
+            if (result == null)
+                return Ok(new HttpResponse { Code = 201, Message = "Team not exist" });
+
+            return Ok(new TeamMemberResponseDto
+            {
+                Code = 200,
+                TeamMembers = result
+            });
+        }
     }
 }
