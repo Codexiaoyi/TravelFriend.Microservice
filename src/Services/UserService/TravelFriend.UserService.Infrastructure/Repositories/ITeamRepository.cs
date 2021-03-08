@@ -15,5 +15,11 @@ namespace TravelFriend.UserService.Infrastructure.Repositories
         /// <param name="member">成员</param>
         /// <returns></returns>
         Task<Member> AddMemberAsync(Member member);
+        /// <summary>
+        /// 获取团队成员
+        /// </summary>
+        /// <param name="teamId">团队id</param>
+        /// <returns></returns>
+        Task<List<Member>> QueryMembersAsync(Guid teamId);
     }
 }

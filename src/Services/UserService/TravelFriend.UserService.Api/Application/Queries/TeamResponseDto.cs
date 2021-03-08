@@ -11,6 +11,11 @@ namespace TravelFriend.UserService.Api.Application.Queries
         public TeamInfo Team { get; set; }
     }
 
+    public class TeamMemberResponseDto : HttpResponse
+    {
+        public List<TeamMember> TeamMembers { get; set; }
+    }
+
     public record TeamInfo
     {
         public Guid TeamId { get; init; }
@@ -19,5 +24,14 @@ namespace TravelFriend.UserService.Api.Application.Queries
         public long CreateTime { get; init; }
         public string CreatePerson { get; init; }
         public string Introduction { get; init; }
+    }
+
+    public record TeamMember
+    {
+        public Guid TeamId { get; init; }
+        public string Email { get; init; }
+        public string Name { get; init; }
+        public string Avatar { get; init; }
+        public bool IsLeader { get; init; }
     }
 }
