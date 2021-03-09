@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelFriend.Common;
 using static TravelFriend.UserService.Api.Protos.UserProvider;
 
 namespace TravelFriend.Aggregate.Media
@@ -27,7 +28,7 @@ namespace TravelFriend.Aggregate.Media
 
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddSingleton(new AppSettings(Configuration));
             services.AddGrpcClient<UserProviderClient>(options =>
             {
                 options.Address = new Uri("https://localhost:3001");

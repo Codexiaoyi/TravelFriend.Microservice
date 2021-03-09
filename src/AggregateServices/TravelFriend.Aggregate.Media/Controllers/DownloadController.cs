@@ -18,11 +18,6 @@ namespace TravelFriend.Aggregate.Media.Controllers
             _userProviderClient = userProviderClient;
         }
 
-        [HttpPost("personal/avatar/get")]
-        public async Task<ActionResult> GetPersonalAvatar()
-        {
-            var result = await _userProviderClient.UpdatePersonalAvatarAsync(new UpdatePersonalAvatarCommand() { Email = "123@qq.com", Avatar = "aaaaa_avatar" });
-            return Ok();
-        }
+
     }
 }
