@@ -55,5 +55,25 @@ namespace TravelFriend.UserService.Api.Controllers
                 Personal = result
             });
         }
+
+        [HttpPost("team/get")]
+        public async Task<ActionResult> GetPersonalTeam([FromBody] PersonalTeamsQuery personalTeams)
+        {
+            var result = await _mediator.Send(personalTeams);
+            if (result == null)
+            {
+                return Ok(new HttpResponse
+                {
+                    Code = 201,
+                    Message = "Teams not exist"
+                });
+            }
+
+            return Ok(new PersonalTeamResponseDto
+            {
+                Code = 200,
+                Teams = result
+            });
+        }
     }
 }

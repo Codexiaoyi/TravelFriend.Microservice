@@ -12,6 +12,11 @@ namespace TravelFriend.UserService.Api.Application.Queries
         public Personal Personal { get; set; }
     }
 
+    public class PersonalTeamResponseDto : HttpResponse
+    {
+        public List<PersonalTeam> Teams { get; set; }
+    }
+
     public record Personal
     {
         public string UserName { get; init; }
@@ -24,5 +29,14 @@ namespace TravelFriend.UserService.Api.Application.Queries
         public int Year { get; init; }
         public int Month { get; init; }
         public int Day { get; init; }
+    }
+
+    public record PersonalTeam
+    {
+        public Guid TeamId { get; init; }
+        public string Name { get; init; }
+        public string Avatar { get; init; }
+        public string Introduction { get; init; }
+        public bool IsLeader { get; init; }
     }
 }

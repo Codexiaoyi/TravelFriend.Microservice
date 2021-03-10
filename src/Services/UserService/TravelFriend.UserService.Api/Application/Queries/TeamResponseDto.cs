@@ -13,7 +13,7 @@ namespace TravelFriend.UserService.Api.Application.Queries
 
     public class TeamMemberResponseDto : HttpResponse
     {
-        public List<TeamMember> TeamMembers { get; set; }
+        public List<TeamMember> Members { get; set; }
     }
 
     public record TeamInfo

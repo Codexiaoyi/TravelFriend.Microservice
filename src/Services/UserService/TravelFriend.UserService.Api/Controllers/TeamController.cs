@@ -66,7 +66,7 @@ namespace TravelFriend.UserService.Api.Controllers
             return Ok(new TeamMemberResponseDto
             {
                 Code = 200,
-                TeamMembers = result
+                Members = result
             });
         }
     }
