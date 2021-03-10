@@ -1,5 +1,6 @@
 ﻿using Aliyun.OSS;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,6 +39,29 @@ namespace TravelFriend.Aggregate.Media.Common
             {
                 return false;
                 Console.WriteLine("Put object failed, {0}", ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        /// <param name="objectName">文件目录及名称</param>
+        /// <returns></returns>
+        public static FileStreamResult Download(string objectName)
+        {
+            var bucketName = AppSettings.GetJsonString("BucketName");
+            // 创建OssClient实例。
+            var client = new OssClient(AppSettings.GetJsonString("OssEndpoint"), AppSettings.GetJsonString("AccessKey"), AppSettings.GetJsonString("SecurityKey"));
+            try
+            {
+                // 下载文件到流。OssObject 包含了文件的各种信息，如文件所在的存储空间、文件名、元信息以及一个输入流。
+                var obj = client.GetObject(bucketName, objectName);
+                return new FileStreamResult(obj.Content, "image/png");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Get object failed. {0}", ex.Message);
+                return null;
             }
         }
     }

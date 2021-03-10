@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TravelFriend.Aggregate.Media.Common;
@@ -11,7 +12,7 @@ namespace TravelFriend.Aggregate.Media.Controllers
 {
     [ApiController]
     [Route("api/media")]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class UploadController : ControllerBase
     {
         private readonly UserProvider.UserProviderClient _userProviderClient;

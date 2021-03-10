@@ -49,7 +49,7 @@ namespace TravelFriend.Aggregate.Media
                         ValidateIssuerSigningKey = true,//是否验证SecurityKey
                         ValidAudience = "travelfriend",//Audience
                         ValidIssuer = "travelfriend",//Issuer
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecurityKey"]))//拿到SecurityKey
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenSecurityKey"]))//拿到SecurityKey
                     };
                 });
             services.AddControllers();

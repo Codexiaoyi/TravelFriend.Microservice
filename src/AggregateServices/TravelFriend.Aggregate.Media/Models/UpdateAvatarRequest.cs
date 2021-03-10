@@ -17,4 +17,12 @@ namespace TravelFriend.Aggregate.Media.Models
         /// </summary>
         public IFormFile Avatar { get; set; }
     }
+
+    public class GetPersonalAvatarReuqest
+    {
+        /// <summary>
+        /// 用户邮箱
+        /// </summary>
+        public string Email { get; set; }
+    }
 }
