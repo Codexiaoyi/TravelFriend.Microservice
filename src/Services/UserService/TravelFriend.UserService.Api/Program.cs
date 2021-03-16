@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -9,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using TravelFriend.UserService.Infrastructure;
 
 namespace TravelFriend.UserService.Api
 {
@@ -33,7 +36,21 @@ namespace TravelFriend.UserService.Api
             try
             {
                 Log.Information("启动用户相关服务...");
-                CreateHostBuilder(args).Build().Run();
+
+                var host = CreateHostBuilder(args).Build();
+
+                using (var scope = host.Services.CreateScope())
+                {
+                    var services = scope.ServiceProvider;
+                    var logger = services.GetRequiredService<ILogger<UserContextSeed>>();
+                    var context = services.GetService<UserContext>();
+
+                    new UserContextSeed()
+                        .SeedAsync(context, logger)
+                        .Wait();
+                }
+
+                host.Run();
             }
             catch (Exception ex)
             {
