@@ -11,6 +11,8 @@ namespace TravelFriend.UserService.Infrastructure
 {
     public class UserContextSeed
     {
+        const long MAX_ITEMS = 1000000;
+
         public async Task SeedAsync(UserContext context, ILogger<UserContextSeed> logger)
         {
             using (context)
@@ -19,23 +21,28 @@ namespace TravelFriend.UserService.Infrastructure
 
                 context.Database.Migrate();
 
-                if (context.Teams.Count() < 100000)
+                var total = context.Teams.Count();
+                if (total < MAX_ITEMS)
                 {
-                    var teams = GenerateTeams(100000 - context.Teams.Count());
+                    var persons = context.Personals.ToList();
+                    var teams = new List<Team>();
+                    foreach (var person in persons)
+                    {
+                        teams.AddRange(GenerateTeams((MAX_ITEMS - total) / persons.Count, person.Email));
+                    }
 
                     await context.Teams.AddRangeAsync(teams);
-
                     await context.SaveChangesAsync();
                 }
             }
         }
 
-        public List<Team> GenerateTeams(long count)
+        public List<Team> GenerateTeams(long count, string create)
         {
             var teams = new List<Team>();
             for (int i = 0; i < count; i++)
             {
-                teams.Add(new Team($"name{i}", $"avatar{i}", i, $"introduction{i}", "123@qq.com"));
+                teams.Add(new Team($"name{Guid.NewGuid().ToString().Substring(30, 6)}", $"avatar{Guid.NewGuid().ToString().Substring(30, 6)}", i, $"introduction{Guid.NewGuid().ToString().Substring(30, 6)}", create));
             }
             return teams;
         }

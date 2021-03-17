@@ -44,10 +44,14 @@ namespace TravelFriend.UserService.Api
                     var services = scope.ServiceProvider;
                     var logger = services.GetRequiredService<ILogger<UserContextSeed>>();
                     var context = services.GetService<UserContext>();
+                    var env = services.GetService<IWebHostEnvironment>();
 
-                    new UserContextSeed()
-                        .SeedAsync(context, logger)
-                        .Wait();
+                    if (env.IsDevelopment() && Configuration.GetValue<bool>("IsUseDataSeed"))
+                    {
+                        new UserContextSeed()
+                       .SeedAsync(context, logger)
+                       .Wait();
+                    }
                 }
 
                 host.Run();
